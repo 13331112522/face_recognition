@@ -1,0 +1,56 @@
+how to install dlib for Windows? meet some problems when I simply pip install dlib, there's my solution.
+I have reviewed and tried some instructions from CSDN, and only this one works for me.
+
+方法1. 通过编译boost安装dlib
+
+①安装CMake
+
+下载网址https://cmake.org/download/
+
+下载smi安装包即可，64位系统建议安装64位CMake。
+
+②安装boost
+
+网址：http://www.boost.org/users/history/
+
+在旧版本中，下载1.63.0版本。可以为压缩文件，也可以是安装版本。
+
+解压或安装后，进入boost目录，执行bootstrap.bat文件后，会产生b2.exe和bjam.exe两个文件，在命令行中或者msvc命令行中，执行以下命令进行编译：
+
+b2 -a --with-python address-model=64toolset=msvc runtime-link=static
+
+其中64是安装位数。在完成编译后，设置环境变量
+
+BOOST_ROOT=C:\local\boost_1_63_0
+
+BOOST_LIBRARYDIR=C:\local\boost_1_63_0\stage\lib
+
+具体目录看解压安装目录
+
+ ③安装python
+
+参考我的博客http://blog.csdn.net/ezhchai/article/details/78411970
+
+建议安装python3.5,64位版本
+
+④安装dlib
+
+下载网址：http://dlib.net/
+
+解压后在目录中看到python setup.py install
+
+ 
+
+方法2. 通过pip直接安装
+
+①安装Python还是推荐3.5
+
+②下载dlib的安装包
+
+https://pypi.python.org/pypi/dlib/18.17.100
+
+选择匹配的版本，dlib-18.17.100-cp35-none-win_amd64.whl(md5)
+
+③通过命令pip install dlib-18.17.100-cp35-none-win_amd64.whl进行安装。
+
+安装过程中，会提示缺少一些python库，这个不同机器估计不太一样，一般会提示缺少h5py，imutils，Keras等。看到提示，就通过pip直接安装提示的库，然后再安装即可。
